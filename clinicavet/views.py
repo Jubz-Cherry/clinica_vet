@@ -10,4 +10,15 @@ def animals(request):
             'age': '3 years',
         }
 
-        return JsonResponse(animals)
+        return JsonResponse(animal)
+    
+def donos(request):
+    if request.method == 'GET':
+        owner = {
+            'id': '1',
+            'name': 'Angelo',
+            'email': 'angelo@example.com',
+            'telephone': '123456789',
+        }
+
+        return JsonResponse(owner)
