@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.urls import path
-from clinicavet.views import animals
-from clinicavet.views import donos
+from clinicavet.views import animals, appointments, clientes
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('animals/', animals, name='animals'),
-    path('donos/', donos, name='donos'),
+    path('animais/', animals, name='animais'),
+    path('clientes/', clientes, name='clientes'),
+    path('agendamento/', appointments, name='agendamento'),
 ]
