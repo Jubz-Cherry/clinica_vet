@@ -10,6 +10,13 @@ class Cliente(models.Model):
 
 
 class Animal(models.Model):
+
+    STATUS_CHOICES = [
+        ('urgent', 'Urgent'),
+        ('normal', 'Normal'),
+        ('low', 'Low'),
+    ]
+     
     animal_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=30)
     specie = models.CharField(max_length=30)
@@ -17,15 +24,35 @@ class Animal(models.Model):
     age = models.IntegerField()
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='normal'
+    )
+
     def __str__(self):
         return self.animal_name
 
 
 class Appointment(models.Model):
+
+    STATUS_CHOICES = [
+        ('scheduled', 'Scheduled'),
+        ('completed', 'Completed'),
+        ('missed', 'Missed'),
+        ('cancelled', 'Cancelled'),
+    ]
+
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     date = models.DateField()
     hour = models.TimeField()
     description = models.CharField(max_length=100)
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='scheduled'
+    )
 
     def __str__(self):
         return f"{self.animal.animal_name} - {self.date}"

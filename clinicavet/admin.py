@@ -13,7 +13,7 @@ admin.site.register(Cliente, ClienteAdmin)
 
 
 class AnimalAdmin(admin.ModelAdmin):
-    list_display = ('id', 'animal_name', 'race', 'age', 'cliente')
+    list_display = ('id', 'animal_name', 'race', 'age', 'cliente', 'status')
     list_display_links = ('id', 'animal_name')
     list_per_page = 20
     search_fields = ('animal_name', 'race', 'cliente__name')
@@ -23,10 +23,25 @@ admin.site.register(Animal, AnimalAdmin)
 
 
 class AppointsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'animal', 'date', 'hour', 'description')
+    list_display = (
+        'id',
+        'animal',
+        'date',
+        'hour',
+        'description',
+        'status',
+    )
+
     list_display_links = ('id', 'animal')
     list_per_page = 20
-    search_fields = ('animal__animal_name', 'description')
+
+    search_fields = (
+        'animal__animal_name',
+        'description',
+    )
+
+    # ISSO AQUI resolve teu problema
+    list_filter = ('status',)
 
 
 admin.site.register(Appointment, AppointsAdmin)
