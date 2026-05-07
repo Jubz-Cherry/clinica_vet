@@ -1,5 +1,5 @@
 from django.contrib import admin
-from clinicavet.models import Cliente, Animal, Appoints
+from clinicavet.models import Cliente, Animal, Appointment
 
 
 class ClienteAdmin(admin.ModelAdmin):
@@ -29,4 +29,4 @@ class AppointsAdmin(admin.ModelAdmin):
     search_fields = ('animal__animal_name', 'description')
 
 
-admin.site.register(Appoints, AppointsAdmin)
+admin.site.register(Appointment, AppointsAdmin)
