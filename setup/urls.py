@@ -1,11 +1,14 @@
 from django.contrib import admin
-from django.urls import path
-from clinicavet.views import animals, appointments, clientes
+from django.urls import include, path
+from clinicavet.views import AnimalsViewSet, AppointmentsViewSet, ClientesViewSet
+from rest_framework import routers 
 
+router = routers.DefaultRouter()
+router.register(r'animais', AnimalsViewSet)
+router.register(r'clientes', ClientesViewSet)
+router.register(r'agendamento', AppointmentsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('animais/', animals, name='animais'),
-    path('clientes/', clientes, name='clientes'),
-    path('agendamento/', appointments, name='agendamento'),
+    path('api/', include(router.urls)),
 ]

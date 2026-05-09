@@ -1,37 +1,19 @@
-from django.http import JsonResponse
+from clinicavet.models import Animal, Cliente, Appointment
+from clinicavet.serializers import ClienteSerializer, AnimalSerializer, AppointmentSerializer  
+from rest_framework import viewsets 
 
 
-def clientes(request):
-    if request.method == 'GET':
-        cliente = {
-            'id': 1,
-            'name': 'Angelo',
-            'email': 'angelo@example.com',
-            'telephone': '123456789',
-        }
-        return JsonResponse(cliente)
+class ClientesViewSet(viewsets.ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
 
 
-def animals(request):
-    if request.method == 'GET':
-        animal = {
-            'id': 1,
-            'animal_name': 'Rex',
-            'gender': 'Male',
-            'specie': 'Dog',
-            'race': 'Labrador',
-            'age': 3,
-        }
-        return JsonResponse(animal)
+class AnimalsViewSet(viewsets.ModelViewSet):
+    queryset = Animal.objects.all()
+    serializer_class = AnimalSerializer
 
 
-def appointments(request):
-    if request.method == 'GET':
-        appointment = {
-            'id': 1,
-            'animal': 'Rex',
-            'date': '2024-06-01',
-            'hour': '14:00',
-            'description': 'Regular check-up',
-        }
-        return JsonResponse(appointment)
+class AppointmentsViewSet(viewsets.ModelViewSet):
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer
+
