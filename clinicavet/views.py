@@ -16,4 +16,16 @@ class AnimalsViewSet(viewsets.ModelViewSet):
 class AppointmentsViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        status = self.request.query_params.get('status')
+        priority = self.request.query_params.get('priority')
+
+        if status:
+            queryset = queryset.filter(status=status)
+        
+        if priority:
+            queryset = queryset.filter(priority=priority)
+
+        return queryset
 

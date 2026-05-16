@@ -15,7 +15,7 @@ class Animal(models.Model):
         ('urgent', 'Urgent'),
         ('normal', 'Normal'),
         ('low', 'Low'),
-    ]
+    ] 
      
     animal_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=30)

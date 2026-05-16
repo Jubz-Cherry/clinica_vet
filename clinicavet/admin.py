@@ -13,7 +13,7 @@ admin.site.register(Cliente, ClienteAdmin)
 
 
 class AnimalAdmin(admin.ModelAdmin):
-    list_display = ('id', 'animal_name', 'race', 'age', 'cliente', 'status')
+    list_display = ('id', 'animal_name', 'race', 'age', 'cliente', 'status',)
     list_display_links = ('id', 'animal_name')
     list_per_page = 20
     search_fields = ('animal_name', 'race', 'cliente__name')
@@ -30,6 +30,7 @@ class AppointsAdmin(admin.ModelAdmin):
         'hour',
         'description',
         'status',
+        'priority',
     )
 
     list_display_links = ('id', 'animal')
