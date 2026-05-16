@@ -40,8 +40,8 @@ class AppointsAdmin(admin.ModelAdmin):
         'description',
     )
 
-    # ISSO AQUI resolve teu problema
-    list_filter = ('status',)
+    # ISSO AQUI resolve problema
+    list_filter = ('status','priority',)
 
 
 admin.site.register(Appointment, AppointsAdmin)

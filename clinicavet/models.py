@@ -36,11 +36,17 @@ class Animal(models.Model):
 
 class Appointment(models.Model):
 
-    STATUS_CHOICES = [
+    APPOINTMENT_STATUS = [
         ('scheduled', 'Scheduled'),
         ('completed', 'Completed'),
         ('missed', 'Missed'),
         ('cancelled', 'Cancelled'),
+    ]
+
+    PRIORITY_STATUS = [
+        ('urgent', 'Urgent'),
+        ('normal', 'Normal'),
+        ('low', 'Low'),  
     ]
 
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
@@ -50,9 +56,16 @@ class Appointment(models.Model):
 
     status = models.CharField(
         max_length=20,
-        choices=STATUS_CHOICES,
+        choices=APPOINTMENT_STATUS,
         default='scheduled'
     )
+    
+    priority = models.CharField(
+        max_length=20,
+        choices=PRIORITY_STATUS,
+        default='normal'
+    )
+
 
     def __str__(self):
         return f"{self.animal.animal_name} - {self.date}"
